@@ -1,6 +1,6 @@
 import pytest
 
-from car import Car, UserManager, Database
+from car import Car, UserManager, Database, is_prime
 
 # ---------- TEST CAR LOGIC -------------
 
@@ -82,3 +82,18 @@ def test_delete_database_user(db):
     db.add_user(5, "Bob Marley")
     db.delete_user(5)
     assert db.get_user(5) is None
+
+# ------------ TEST PRIME NUMBERS --------------
+
+
+@pytest.mark.parametrize("number, output", [
+    (1, False),
+    (2, True),
+    (3, True),
+    (4, False),
+    (5, True),
+    (23, True),
+])
+
+def test_prime_numbers(number, output):
+    assert is_prime(number) == output
